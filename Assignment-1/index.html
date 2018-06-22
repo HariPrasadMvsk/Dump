@@ -48,11 +48,10 @@ $(document).ready(function(){
 			success: function(result) {
 				if(result.length > 0) {
 					$.each(result, function (index, value) {
-						console.log(result[index].full_name);
 						$( ".result" ).append("<li class='repository' id='repository_"+index+"'><span>"+result[index].name+"</span> <a href='javascript:void(0);' class='newIssueBtn' id='newIssueBtn_"+index+"'>New Issue</a></li>");
 					});
 				} else {
-					$(".result").append("No result found");
+					$(".result").append("<li class='repository'>No result found</li>");
 				}
 			},
 			error: function(result) {
