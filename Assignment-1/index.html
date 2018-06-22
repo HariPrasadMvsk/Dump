@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ES6 and React Assignment One</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+<div class="mainWrapper">
+	<div class="headerSection">
+	  <h1>GitHub Repositories</h1>
+	</div>
+
+	<div style="overflow:auto">
+	  <div class="main">
+		<div class="inputWrapper">
+			<h2>Enter following details to get the repositories list </h2>
+			<div style="">
+				<label>User Name: </label>
+				<input type="text" name="user name" id="userName" />
+			</div>
+			<div class="btnContainer">
+				<a href="javascript:void(0);" id="FetchData" >Fetch Repositories Data</a>
+			</div>
+		</div>
+		<div class="resultWrapper">
+			<ul class="result"></ul>
+		</div>
+	  </div>
+	</div>
+
+
+	<div class="footerSection"> All &copy; rights are reserved. </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('#FetchData').click(function(event) {
+		var repUserName = $('#userName').val();
+		$(".resultWrapper").show();
+		$(".resultWrapper .result").empty();
+		$("#userName").val("");
+		$.ajax({
+			url: "https://api.github.com/users/"+repUserName+"/repos",
+			jsonp: true,
+			method: "GET",
+			dataType: "json",
+			success: function(result) {
+				if(result.length > 0) {
+					$.each(result, function (index, value) {
+						console.log(result[index].full_name);
+						$( ".result" ).append("<li class='repository' id='repository_"+index+"'><span>"+result[index].name+"</span> <a href='javascript:void(0);' class='newIssueBtn' id='newIssueBtn_"+index+"'>New Issue</a></li>");
+					});
+				} else {
+					$(".result").append("No result found");
+				}
+			},
+			error: function(result) {
+				$(".result").append("<li class='repository'>No result found</li>");
+				return false;
+			}
+		});
+	});
+	$(document).on('click', 'a.newIssueBtn', function(){
+		var formElement = "<div class='newIssueWrapper'><div class='newIssueTitle'><label>Title: </label><input type='text' name='title' class='issueTitle' /></div><div class='newIssueComments'><label>Comments: </label><textarea class='issueComments' name='comments'></textarea></div><div class='commentSubmitBtn'><label>&nbsp;</label><a href='javascript:void(0);'>Submit new issue</a></div></div>";
+		$(this).closest('.repository').append(formElement);
+	});
+	$(document).on('click', '.commentSubmitBtn a', function(){
+		var element = $(this).closest('.newIssueWrapper');
+		element.find('.newIssueTitle').html('Title: <span>'+$('.issueTitle').val())+'</span>';
+		element.find('.newIssueComments').html('Comments: <span>'+$('.issueComments').val())+'</span>';
+		element.find('.commentSubmitBtn').hide();
+		$(this).closest('.repository').find('.newIssueBtn').hide();
+	});
+});
+	
+
+</script>
+</body>
+</html>
