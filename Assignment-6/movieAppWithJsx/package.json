@@ -1,0 +1,38 @@
+{
+  "name": "MovieAppWithJSX",
+  "version": "1.0.0",
+  "description": "Assignment for Reach and ES6",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HariPrasadMvsk/ES6-React-Training.git"
+	
+  },
+  "author": "Hari Prasad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HariPrasadMvsk/ES6-React-Training/issues"
+  },
+  "homepage": "https://github.com/HariPrasadMvsk/ES6-React-Training#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "bootstrap": "^4.1.3",
+    "css-loader": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "jquery": "^1.12.4",
+    "popper.js": "^1.14.3",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  }
+}
